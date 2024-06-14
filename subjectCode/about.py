@@ -19,7 +19,12 @@ def show_about_screen():
     )
 
     about_menu.add.label(about_text, max_char=40, font_size=20)
-    about_menu.add.button('Back', pygame_menu.events.BACK)
+
+    def go_back():
+        import menu
+        menu.main_menu()
+
+    about_menu.add.button('Back', go_back)
 
     while True:
         dis.fill((0, 0, 0))  # Fill screen with black color
