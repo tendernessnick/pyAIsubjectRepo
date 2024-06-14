@@ -26,6 +26,7 @@ def main_menu():
     menu.mainloop(dis)
 
 # hot-fix 添加了一个注释
+# master 添加了一个注释
 if __name__ == "__main__":
     main_menu()
 
