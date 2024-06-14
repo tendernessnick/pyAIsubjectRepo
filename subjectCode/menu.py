@@ -27,6 +27,7 @@ def main_menu():
 
 # hot-fix 添加了一个注释
 # master 添加了一个注释
+# hot-fix 又添加了一个注释
 if __name__ == "__main__":
     main_menu()
 
