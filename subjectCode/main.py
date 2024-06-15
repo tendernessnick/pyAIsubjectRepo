@@ -122,11 +122,6 @@ def gameLoop():
     pygame.time.wait(2000)
     go_to_main_menu()
 
-    # pygame.quit()
-    # quit()
-
-
-# pygame.display.set_caption('Pac-Man 2D')
-# gameLoop()
+    # 这里是对master 分支同步的测试
 
 
