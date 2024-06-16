@@ -9,14 +9,29 @@ from entities import Food, SpeedBoost, Monster, generate_valid_position
 dis = pygame.display.set_mode((dis_width, dis_height))
 
 def message(msg, color, dis):
+    """
+    在屏幕上显示信息
+    :param msg: 信息内容
+    :param color: 信息颜色
+    :param dis: 显示对象
+    """
+
     mesg = font_style.render(msg, True, color)
     dis.blit(mesg, [dis_width / 6, dis_height / 3])
 
 def go_to_main_menu():
+    """
+    返回主菜单
+    """
+
     from menu import main_menu
     main_menu()
 
 def gameLoop():
+    """
+    游戏主循环
+    """
+
     game_over = False
     score = 0
     player_x = 390
@@ -27,12 +42,14 @@ def gameLoop():
 
     foods = [Food(*generate_valid_position(food_size)) for _ in range(food_count)]
     speed_boosts = []
+    # teleports = []
     monsters = [Monster(*generate_valid_position(monster_size), random.randint(3, max_monster_speed))]
 
     last_monster_time = time.time()
     last_speed_boost_time = time.time()
     monster_interval = 10  # 每10秒生成一个怪物
     speed_boost_interval = 15  # 每15秒生成一个加速豆
+    # teleport_interval = 20  # 每20秒生成一个瞬移道具
 
     clock = pygame.time.Clock()
 
@@ -92,6 +109,13 @@ def gameLoop():
                     player_speed_boosted = True
                     player_speed_timer = time.time()
 
+        # for teleport in teleports[:]:
+        #     teleport.draw(dis)
+        #     if player_x < teleport.x + food_size and player_x + player_size > teleport.x:
+        #         if player_y < teleport.y + food_size and player_y + player_size > teleport.y:
+        #             teleports.remove(teleport)
+        #             player_x, player_y = generate_valid_position(player_size)
+
         if player_speed_boosted and time.time() - player_speed_timer > speed_boost_duration:
             player_speed -= speed_boost_amount
             player_speed_boosted = False
@@ -113,6 +137,10 @@ def gameLoop():
             last_speed_boost_time = time.time()
             speed_boosts.append(SpeedBoost(*generate_valid_position(food_size)))
 
+        # if time.time() - last_teleport_time > teleport_interval:
+        #     last_teleport_time = time.time()
+        #     teleports.append(Teleport(*generate_valid_position(food_size)))
+
         pygame.display.update()
         clock.tick(30)
 
@@ -122,6 +150,8 @@ def gameLoop():
     pygame.time.wait(2000)
     go_to_main_menu()
 
-    # 这里是对master 分支同步的测试
+    # 开始游戏
+    # if __name__ == "__main__":
+    #     gameLoop()
 
 

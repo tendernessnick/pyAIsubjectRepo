@@ -1,6 +1,7 @@
 import pygame
 import pygame_menu
-from constants import dis_width, dis_height
+from constants import *
+
 
 def show_about_screen():
     pygame.init()
@@ -27,7 +28,7 @@ def show_about_screen():
     about_menu.add.button('Back', go_back)
 
     while True:
-        dis.fill((0, 0, 0))  # Fill screen with black color
+        dis.fill(black)  # Fill screen with black color
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:

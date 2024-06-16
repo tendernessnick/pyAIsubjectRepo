@@ -3,6 +3,14 @@ import pygame
 
 # A*寻路算法
 def a_star(start, end, walls, grid_size):
+    """
+    A*寻路算法实现
+    :param start: 起始点
+    :param end: 终点
+    :param walls: 墙体列表
+    :param grid_size: 网格大小
+    :return: 从起点到终点的路径
+    """
     def heuristic(a, b):
         return abs(a[0] - b[0]) + abs(a[1] - b[1])
 

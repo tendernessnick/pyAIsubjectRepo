@@ -32,6 +32,13 @@ class Monster:
         self.target_index = 0  # 当前路径目标索引
 
     def move_towards_player(self, player_x, player_y, walls):
+        """
+        怪物向玩家移动
+        :param player_x: 玩家x坐标
+        :param player_y: 玩家y坐标
+        :param walls: 墙体列表
+        """
+
         current_time = time.time()
         if current_time - self.last_path_update > self.path_update_interval or not self.path:
             start = (self.x // wall_thickness * wall_thickness, self.y // wall_thickness * wall_thickness)
@@ -59,6 +66,12 @@ class Monster:
         pygame.draw.rect(dis, blue, [self.x, self.y, monster_size, monster_size])
 
 def generate_valid_position(size):
+    """
+    生成有效的随机位置
+    :param size: 物体大小
+    :return: 随机生成的位置
+    """
+
     while True:
         x = random.randint(0, dis_width - size)
         y = random.randint(0, dis_height - size)
