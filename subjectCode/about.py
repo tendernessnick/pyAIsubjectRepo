@@ -11,7 +11,7 @@ def show_about_screen():
 
     about_text = (
         "Pac-Man 2D Game\n"
-        "Author: Your Name\n"
+        "Author: Tenderness\n"
         "This game is a simple implementation of the classic Pac-Man game.\n"
         "Use the arrow keys to move Pac-Man and collect the food.\n"
         "Avoid the monsters or the game will be over.\n"
@@ -28,7 +28,7 @@ def show_about_screen():
     about_menu.add.button('Back', go_back)
 
     while True:
-        dis.fill(black)  # Fill screen with black color
+        dis.fill(black)  # 黑色填充
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
