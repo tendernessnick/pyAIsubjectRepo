@@ -37,9 +37,8 @@ def gameLoop():
     player_speed_boosted = False  # 玩家是否加速标志
     player_speed_timer = 0  # 加速计时器
 
-    # 初始化食物和加速道具列表
-    foods = [Food(*generate_valid_position(food_size)) for _ in range(food_count)]
-    speed_boosts = []
+    foods = [Food(*generate_valid_position(food_size)) for _ in range(food_count)]  # 初始化食物
+    speed_boosts = []  # 初始化加速道具
     # teleports = []  # 瞬移道具列表，预留位置
     monsters = [Monster(*generate_valid_position(monster_size), random.randint(3, max_monster_speed))]  # 初始怪物
 
@@ -51,6 +50,7 @@ def gameLoop():
 
     clock = pygame.time.Clock()  # 设置游戏时钟
 
+    # 没有碰到怪物时，游戏循环不结束
     while not game_over:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:  # 如果接收到退出事件，则结束游戏
@@ -148,8 +148,8 @@ def gameLoop():
         #     last_teleport_time = time.time()
         #     teleports.append(Teleport(*generate_valid_position(food_size)))
 
-        pygame.display.update()  # 更新显示
-        clock.tick(30)  # 控制游戏帧率
+        pygame.display.update()  # 更新显示，刷新界面，保证游戏正常进行
+        clock.tick(30)  # 控制游戏帧率，怪物移动速度
 
     # 游戏结束后的处理
     dis.fill(black)

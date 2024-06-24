@@ -1,4 +1,4 @@
-import heapq
+import heapq  # 导入heapq库，用于优先队列
 import pygame
 
 # A*寻路算法
@@ -11,11 +11,13 @@ def a_star(start, end, walls, grid_size):
     :param grid_size: 网格大小
     :return: 从起点到终点的路径
     """
-    # 启发式函数，使用曼哈顿距离
+
+    # 定义启发式函数heuristic，使用曼哈顿距离计算两个点之间的估计距离。
+    # 曼哈顿距离是指在一个二维网格中，从一个点到另一个点的路径长度（只能水平和垂直移动）
     def heuristic(a, b):
         return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
-    # 获取当前节点的邻居节点
+    # 获取当前节点的所有邻居节点
     def get_neighbors(node):
         neighbors = [
             (node[0] + grid_size, node[1]),
@@ -38,6 +40,11 @@ def a_star(start, end, walls, grid_size):
     g_score = {start: 0}  # 起点的实际代价g(n)
     f_score = {start: heuristic(start, end)}  # 起点的总代价f(n)
 
+    # 主循环
+    # 从优先队列中取出f(n)最小的节点current
+    # 如果current是终点，则通过回溯came_from字典重建路径，并返回路径
+    # 对每个邻居节点，计算从起点到该邻居节点的实际代价tentative_g_score
+    # 如果邻居节点未在g_score中，或新的tentative_g_score小于已有的g_score值，则更新邻居节点的父节点、g_score和f_score，并将邻居节点加入优先队列
     while open_set:  # 当优先队列不为空时
         _, current = heapq.heappop(open_set)  # 取出f(n)最小的节点
         if current == end:  # 如果当前节点是目标节点
