@@ -23,7 +23,7 @@ initial_player_speed = 5  # 初始吃豆人的速度
 
 # 定义食物大小和速度
 food_size = 20
-food_count = 10
+food_count = 10  # 定义初始生成的豆子的数量
 
 # 定义怪物大小和速度
 monster_size = 20

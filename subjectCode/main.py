@@ -19,17 +19,14 @@ def message(msg, color, dis):
     mesg = font_style.render(msg, True, color)  # 渲染消息
     dis.blit(mesg, [dis_width / 6, dis_height / 3])  # 将消息显示在屏幕上
 
+#   返回主菜单
 def go_to_main_menu():
-    """
-    返回主菜单
-    """
+
     from menu import main_menu  # 延迟导入，避免循环依赖
     main_menu()
 
+#   游戏主循环
 def gameLoop():
-    """
-    游戏主循环
-    """
     game_over = False  # 游戏结束标志
     score = 0  # 初始分数
     player_x, player_y = 390, 280  # 玩家初始位置
@@ -44,7 +41,7 @@ def gameLoop():
 
     last_monster_time = time.time()  # 记录上次生成怪物的时间
     last_speed_boost_time = time.time()  # 记录上次生成加速道具的时间
-    monster_interval = 10  # 每10秒生成一个怪物
+    monster_interval = 1  # 每10秒生成一个怪物
     speed_boost_interval = 15  # 每15秒生成一个加速道具
     # teleport_interval = 20  # 每20秒生成一个瞬移道具
 
@@ -93,14 +90,14 @@ def gameLoop():
         for wall in walls:
             pygame.draw.rect(dis, wall_color, wall)
 
-        # 处理食物的逻辑
-        for food in foods[:]:
-            food.draw(dis)
-            if player_x < food.x + food_size and player_x + player_size > food.x:
-                if player_y < food.y + food_size and player_y + player_size > food.y:
-                    foods.remove(food)
-                    score += 1
-                    foods.append(Food(*generate_valid_position(food_size)))  # 重新生成一个食物
+            # 处理食物的逻辑
+            for food in foods[:]:
+                food.draw(dis)  # 绘制食物
+                if player_x < food.x + food_size and player_x + player_size > food.x:
+                    if player_y < food.y + food_size and player_y + player_size > food.y:
+                        foods.remove(food)  # 移除被吃掉的食物
+                        score += 1
+                        foods.append(Food(*generate_valid_position(food_size)))  # 重新生成一个食物
 
         # 处理加速道具的逻辑
         for speed_boost in speed_boosts[:]:
